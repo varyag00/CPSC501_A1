@@ -1,8 +1,11 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /* Name: 	Dan Gonzalez
+ * UCID: 	10058656
  * Age: 	23
  * 
  * Program is a bartender program that can serve the user new drinks
@@ -12,19 +15,33 @@ import java.util.Scanner;
  * 
  */
 
-public class Main {
+public class Main 
+{
 
-	//TODO: think of shitty way to check if drink is alcoholic, probably use hashmap instead of arraylist.
-	//or be even worse and just add them sequentially
-	public ArrayList<String> drinks = new ArrayList<>(Arrays.asList("AppleJuice", "Beer", "Whiskey"));
+	public static Map<String, Boolean> drinks = new HashMap<String, Boolean>();
 	
 	//trying my best to put the whole program into one main method
 	public static void main(String[] args) 
 	{
-		System.out.println("Welcome to Bartendtron 2000, please select an option. Use \"list\" to display options");
+			//initializing bartender's drinks
+		drinks.put("AppleJuice",false);
+		drinks.put("Beer", true);
+		drinks.put("Whiskey", true);
+		
+		int age = -1;
+		
 		Scanner in = new Scanner(System.in);
 		
-		while (in.nextLine() != null){
+		while (in.nextLine() != "quit"){
+			System.out.println("Please enter your age."); 
+			age = in.nextInt();
+			if (age != -1)
+				break;
+		}
+		
+		System.out.println("Welcome to Bartendtron 2000, please select an option. Use \"list\" to display options.");
+
+		while (in.nextLine() != "quit"){
 			switch (in.nextLine()){
 			case ("list"):
 				System.out.println("Commands: \n\n order <String drink> <int age> \n\n teach <String drink> <bool isAlcoholic>");
