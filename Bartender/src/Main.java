@@ -115,6 +115,8 @@ public class Main
 			
 			else{
 				System.out.println("Invalid command, type \"list\" to see valid commands");
+				input = in.nextLine();
+
 			}
 		}
 	}
