@@ -6,43 +6,47 @@ import java.util.Scanner;
  * UCID: 	10058656
  * 
  * Program is a bartender program that can serve the user drinks
- * Bartender starts off knowing how to make some drinks, but can learn to make new drinks. Checks for ID on alcoholic drinks
+ * Bartender starts off knowing how to make some drinks, but can learn to make new drinks. 
+ * Checks for user's age when attempting to order alcoholic drinks
  * 
  */
 
 public class Main 
 {
-
 	public static Map<String, Boolean> drinks = new HashMap<String, Boolean>();
 	
-	//trying my best to put the whole program into one main method
 	public static void main(String[] args) 
-	{
+	{	
 			//initializing bartender's drinks
 		drinks.put("AppleJuice",false);
 		drinks.put("Beer", true);
 		drinks.put("Whiskey", true);
 		
-		int age;
-		
 		Scanner in = new Scanner(System.in);
-		String input;
 		
-		//get user's age
+		int age;
+
 		while (true) {
 			System.out.println("Please enter your age."); 	            
-			input = in.next();
+			String input = in.next();
 	        try {
 	        	age = Integer.parseInt(input);
-	                break;
+	            break;
 	        } 
 	        catch (Exception e) {
 	        	System.out.println("That's not a valid age, try again.");
 	        }
 		}
-
+		
 		System.out.println("Welcome to Bartendtron 2000, please select an option. Use \"list\" to display options.");
-
+		
+		Run(in, age, drinks);
+	}
+	
+	public static void Run(Scanner in, int age, Map<String, Boolean> drinks)
+	{		
+		String input;
+		
 		while (true) {
 			input = in.next();
 	        
@@ -117,6 +121,6 @@ public class Main
 				System.out.println("Invalid command, type \"list\" to see valid commands");
 				input = in.nextLine();
 			}
-		}
+		}	
 	}
 }
