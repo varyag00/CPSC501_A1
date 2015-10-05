@@ -17,15 +17,24 @@ public class Main
 	
 	public static void main(String[] args) 
 	{	
-			//initializing bartender's drinks
+		//initializing bartender's drinks
 		drinks.put("AppleJuice",false);
 		drinks.put("Beer", true);
 		drinks.put("Whiskey", true);
 		
 		Scanner in = new Scanner(System.in);
 		
-		int age;
+		int age = getSomeInformationFromUser(in);
 
+		System.out.println("Welcome to Bartendtron 2000, please select an option. Use \"list\" to display options.");
+
+		Run(in, age, drinks);
+	}
+	
+	public static int getSomeInformationFromUser(Scanner in){
+		
+		//get user's age
+		int age;
 		while (true) {
 			System.out.println("Please enter your age."); 	            
 			String input = in.next();
@@ -37,10 +46,7 @@ public class Main
 	        	System.out.println("That's not a valid age, try again.");
 	        }
 		}
-		
-		System.out.println("Welcome to Bartendtron 2000, please select an option. Use \"list\" to display options.");
-		
-		Run(in, age, drinks);
+		return age;
 	}
 	
 	public static void Run(Scanner in, int age, Map<String, Boolean> drinks)

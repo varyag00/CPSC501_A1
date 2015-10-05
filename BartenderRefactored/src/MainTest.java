@@ -15,15 +15,19 @@ public class MainTest {
 	private Scanner scanner;	
 	private Map<String, Boolean> drinks;
 
-//	@Test
-//	public void TestGetSomeInformationFromUser(){
-//		String data = "12";
-//		//InputStream stdin = System.in;
-//		System.setIn(new ByteArrayInputStream(data.getBytes()));
-//		scanner = new Scanner(System.in);
-//		
-//		assertEquals(12 , Main.getSomeInformationFromUser(scanner));
-//	}
+	@Test
+	public void TestGetSomeInformationFromUser(){
+		String data = "12";
+		System.setIn(new ByteArrayInputStream(data.getBytes()));
+		scanner = new Scanner(System.in);
+		assertEquals(12 , Main.getSomeInformationFromUser(scanner));
+		
+		data = "-1";
+		System.setIn(new ByteArrayInputStream(data.getBytes()));
+		scanner = new Scanner(System.in);
+		assertEquals(-1, Main.getSomeInformationFromUser(scanner));
+	}
 
+	
 }
 
