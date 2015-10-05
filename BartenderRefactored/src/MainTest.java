@@ -20,12 +20,12 @@ public class MainTest {
 		String data = "12";
 		System.setIn(new ByteArrayInputStream(data.getBytes()));
 		scanner = new Scanner(System.in);
-		assertEquals(12 , Main.getSomeInformationFromUser(scanner));
+		assertEquals(12 , Main.getUserAge(scanner));
 		
 		data = "-1";
 		System.setIn(new ByteArrayInputStream(data.getBytes()));
 		scanner = new Scanner(System.in);
-		assertEquals(-1, Main.getSomeInformationFromUser(scanner));
+		assertEquals(-1, Main.getUserAge(scanner));
 	}
 
 	

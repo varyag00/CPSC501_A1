@@ -24,14 +24,14 @@ public class Main
 		
 		Scanner in = new Scanner(System.in);
 		
-		int age = getSomeInformationFromUser(in);
+		int age = getUserAge(in);
 
 		System.out.println("Welcome to Bartendtron 2000, please select an option. Use \"list\" to display options.");
 
 		Run(in, age, drinks);
 	}
 	
-	public static int getSomeInformationFromUser(Scanner in){
+	public static int getUserAge(Scanner in){
 		
 		//get user's age
 		int age;
