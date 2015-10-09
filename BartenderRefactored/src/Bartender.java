@@ -14,6 +14,19 @@ public class Bartender {
 		this.drinks = drinks;
 	}
 	
+	public String teach(Scanner in){
+			//parsing string
+		String drinkName = in.next();
+		try {
+			drinks.put(drinkName,Boolean.parseBoolean(in.next()));  
+										
+			return (drinkName + " learned!");
+		}
+		catch (Exception e){
+			return "Invalid teaching format.";
+		}
+	}
+	
 	public void Run()
 	{				
 		String input;
@@ -26,17 +39,9 @@ public class Bartender {
 			}
 			
 			else if (input.contains("teach")){
-				
-					//parsing string
-				String drinkName = in.next();
-				try {
-					drinks.put(drinkName,Boolean.parseBoolean(in.next()));  
-						
-					System.out.println(drinkName + " learned!");
-				}
-				catch (Exception e){
-					System.out.println("Invalid teaching format.");
-				}
+					
+				String output = teach(in);
+				System.out.println(output);
 			}
 			
 			else if (input.contains("order")){

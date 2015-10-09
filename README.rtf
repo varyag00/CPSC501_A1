@@ -1,134 +1,240 @@
-{\rtf1\ansi\ansicpg1252\deff0\nouicompat{\fonttbl{\f0\fswiss\fcharset0 Helvetica;}{\f1\fnil\fcharset0 AndaleMono;}{\f2\fnil Courier New;}{\f3\fnil\fcharset0 Courier New;}}
-{\colortbl ;\red159\green160\blue28;\red255\green255\blue0;\red30\green181\blue64;\red0\green43\blue54;}
-{\*\generator Riched20 10.0.10240}\viewkind4\uc1 
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\f0\fs24\lang9 Name:\tab J. Daniel Gonzalez\par
-UCID:\tab 10058656\par
-Class:\tab CPSC 501\par
-Ass:\tab\tab 1\par
-\par
-\par
-Code base: The code base I chose to use for this assignment is the java project \ldblquote Bartender\rdblquote , a (terrible) program that I wrote specifically for this assignment. The program runs a \ldblquote bartender\rdblquote  that serves the user drinks and may learn to make new drinks. It also does not serve alcoholic drinks to underage users. \par
-\par
-Version control: The version control system I chose to use for this assignment is git.\par
-Initial commits:\par
-\tab First commit in the repository: \cf1\f1 4cd43cc361d43339e069800ef918a2df71fe738c\cf0\f0\par
-\tab\ldblquote Real\rdblquote  first commit: \cf1\f1 b4345f357a315a4adf0c64bee6cd5e7de99ff68f\cf0\f0\par
-\par
-Final commit:  \highlight2\b TODO\highlight0\b0\par
-\tab\par
-\par
-\par
-TODO:\par
-\par
-Things to submit: \par
-\tab 1. Hard copy of this file (the report)\par
-\tab 2. Hard copy of the first and last versions of your refactored code \tab\tab -First: DONE\par
-\tab\tab -Last: TODO\par
-\tab 3. A hard version of your unit test code\par
-\tab 4. A hard copy of your version control logs\par
-\par
-\par
-\ul\b Report\b0 :\par
-\ulnone\par
-\b Refactoring 1\b0 : \b\par
-\par
-\b0 Upon first seeing the program, the first bad code smell that I immediately spotted is the "\i Large Class\i0 " smell. The Main class was very large, and there was only one grotesquely long main method in that large class. The first refactoring I chose to perform on this code was none other than "\i Extract Method\i0 ". The largest, most jarringly out of place block of code in the program was the large while loop spanning lines 46 to 120. I chose this loop as the starting point and extracted the method Run() by taking all the code in this loop.\par
-\par
-This refactoring shortened the main method to 1/3 of its original size and improved the usability and readability of the code. As it is difficult to test console input and output without using third party libraries, I tested that the code worked the same by running the following test scripts in both the original program and the refactored:\par
-\par
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf110
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 AndaleMono;\f2\fmodern\fcharset0 CourierNewPSMT;
+\f3\fmodern\fcharset0 CourierNewPS-BoldMT;}
+{\colortbl;\red255\green255\blue255;\red159\green160\blue28;\red255\green255\blue0;\red30\green181\blue64;
+\red0\green0\blue0;\red255\green255\blue255;}
+\vieww12600\viewh14500\viewkind0
+\deftab720
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\partightenfactor0
 
-\pard\f2\fs20 Please enter your age.\par
-\f3\lang4105 >\f2\lang9 sdfsdf\par
-That's not a valid age, try again.\par
+\f0\fs24 \cf0 Name:	J. Daniel Gonzalez\
+UCID:	10058656\
+Class:	CPSC 501\
+Ass:		1\
+\
+\
+Code base: The code base I chose to use for this assignment is the java project \'93Bartender\'94, a (terrible) program that I wrote specifically for this assignment. The program runs a \'93bartender\'94 that serves the user drinks and may learn to make new drinks. It also does not serve alcoholic drinks to underage users. \
+\
+Version control: The version control system I chose to use for this assignment is git.\
+Initial commits:\
+	First commit in the repository: 
+\f1 \cf2 4cd43cc361d43339e069800ef918a2df71fe738c
+\f0 \cf0 \
+	\'93Real\'94 first commit: 
+\f1 \cf2 b4345f357a315a4adf0c64bee6cd5e7de99ff68f
+\f0 \cf0 \
+		-i.e. the first commit with the complete code that I started refactoring\
+\
+	<
+\b \cb3 TODO
+\b0 \cb1 >: change original Bartender project to the slightly modified project with a run method, also change first commit in repository to its hash\
+\
+Final commit:  
+\b TODO
+\b0 \
+	\
+\
+\
 
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803 Please enter your age.\f0\fs24\par
-\par
+\b \cb3 TODO
+\b0 \cb1 :\
+\
+Things to submit: \
+	1. Hard copy of this file (the report)\
+	2. Hard copy of the first and last versions of your refactored code 		\
+		-Last: TODO\
+	3. A hard version of your unit test code\
+	4. A hard copy of your version control logs\
+\
+\
 
-\pard\f2\fs20 Please enter your age.\par
-\f3\lang4105 >\f2\lang9 12\par
-Welcome to Bartendtron 2000, please select an option. Use "list" to display options.\par
-\f3\lang4105 >\f2\lang9 order Whiskey\par
+\b \ul Report
+\b0 :\
+\ulnone \
 
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803 You're not old enough to drink Whiskey\f0\fs24\par
-\par
+\b Refactoring 1
+\b0 : 
+\b \
+\
 
-\pard\f2\fs20 Please enter your age.\par
-\f3\lang4105 >\f2\lang9 18\par
-Welcome to Bartendtron 2000, please select an option. Use "list" to display options.\par
-\f3\lang4105 >\f2\lang9 learn\par
-Invalid command, type "list" to see valid commands\par
-\f3\lang4105 >\f2\lang9 teach Milk false\par
-Milk learned!\par
-\f3\lang4105 >\f2\lang9 order Milk\par
+\b0 Upon first seeing the program, the first bad code smell that I immediately spotted is the "
+\i Large Class
+\i0 " smell. The Main class was very large, and there was only one grotesquely long main method in that large class. The first refactoring I chose to perform on this code was none other than "
+\i Extract Method
+\i0 ". The largest, most jarringly out of place block of code in the program was the large while loop spanning lines 46 to 120. I chose this loop as the starting point and extracted the method Run() by taking all the code in this loop.\
+\
+This refactoring shortened the main method to 1/3 of its original size and improved the usability and readability of the code. As it is difficult to test console input and output without using third party libraries, I tested that the code worked the same by running the following test scripts in both the original program and the refactored:\
+\
+\pard\pardeftab720\partightenfactor0
 
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803 The bartender gives you a Milk\f0\fs24\par
-\par
-The commit corresponding to this refactoring is: \b 3722375\b0\par
-\par
-\b Refactoring 1.5\b0 :\par
-Looking again at the code, I noticed again the bad smell "\i Large Class\i0 " and decided that it required another "Extract Method" refactoring, this time on the other while loop that propts for the user's age. This was an small refactoring that did not change the code base significantly, but it did reduce the size of the main method to be more managable.\par
-\par
-I tested this refactoring by creating the JUnit test  \cf3\highlight4\b\f2\fs20 TestGetSomeInformationFromUser\f3\lang4105 ()\highlight0  \cf0\b0\f0\fs24\lang9 within MainTest.java.\par
-\par
-The commit corresponding to this refactoring is: \b 307cd86\b0\par
-\par
-\b Refactoring 2\b0 :\par
-After completing the above refactorings and making the code signiticantly more readable, the next bad smell that caught my eye was the "\i Method name that does not reveal its purpose\i0 ", in the getSomeInformationFromUser() method that I introduced above. I proceeded to rename the method to getUserAge(). I updated the references to this method both in Main and in TestMain. This refactoring made the code more readable and self-explanatory.\par
-\par
-I ran the updated JUnit test for getSomeInformationFromUser() and found that both methods passed the test as expected.\par
-\par
-The commit corresponding for this refactoring is: \b 5fc27b2\b0\par
-\par
-\b Refactoring 3\b0 :\par
-After performing the above refactorings, I felt better about the state of the program. However, upon looking at the new methods and noticing that they were all refered to by an overarching "Bartender", the bad code smell of "\i Large Class\i0 " came back again, seeing as the entire program in written in one main class. The entire program did not need to be written in one Main class, as that completely forsakes good object oriented programming practice. The major refactoring I chose to apply to remedy this bad smell is "\i Extract Class\i0 ". I started by taking a look at the code within Run() and noticed that the entirety of the code deals with the bartender and his actions. In a good OOP program, the bartender would be a self-contained class, and that is how I made it. \par
-\par
-Due to the difficulty of console input/output testing, I tested that this refactoring did not break any functionality or cause any unexpected changes by running the same script as in \b Refactoring 1\b0 . \par
-\par
+\f2\fs20 \cf0 Please enter your age.\
+>sdfsdf\
+That's not a valid age, try again.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\partightenfactor0
+\cf0 Please enter your age.
+\f0\fs24 \
+\
+\pard\pardeftab720\partightenfactor0
 
-\pard\f2\fs20 Please enter your age.\par
-\f3\lang4105 >\f2\lang9 sdfsdf\par
-That's not a valid age, try again.\par
+\f2\fs20 \cf0 Please enter your age.\
+>12\
+Welcome to Bartendtron 2000, please select an option. Use "list" to display options.\
+>order Whiskey\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\partightenfactor0
+\cf0 You're not old enough to drink Whiskey
+\f0\fs24 \
+\
+\pard\pardeftab720\partightenfactor0
 
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803 Please enter your age.\f0\fs24\par
-\par
+\f2\fs20 \cf0 Please enter your age.\
+>18\
+Welcome to Bartendtron 2000, please select an option. Use "list" to display options.\
+>learn\
+Invalid command, type "list" to see valid commands\
+>teach Milk false\
+Milk learned!\
+>order Milk\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\partightenfactor0
+\cf0 The bartender gives you a Milk
+\f0\fs24 \
+\
+The commit corresponding to this refactoring is: 
+\b 3722375
+\b0 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\partightenfactor0
 
-\pard\f2\fs20 Please enter your age.\par
-\f3\lang4105 >\f2\lang9 12\par
-Welcome to Bartendtron 2000, please select an option. Use "list" to display options.\par
-\f3\lang4105 >\f2\lang9 order Whiskey\par
+\b \cf0 Refactoring 1.5
+\b0 :\
+Looking again at the code, I noticed again the bad smell "
+\i Large Class
+\i0 " and decided that it required another "Extract Method" refactoring, this time on the other while loop that propts for the user's age. This was an small refactoring that did not change the code base significantly, but it did reduce the size of the main method to be more manageable.\
+\
+I tested this refactoring by creating the JUnit test  
+\f3\b\fs20 \cf4 TestGetSomeInformationFromUser() 
+\f0\b0\fs24 \cf0 within MainTest.java.\
+\
+The commit corresponding to this refactoring is: 
+\b 307cd86
+\b0 \
+\
 
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803 You're not old enough to drink Whiskey\f0\fs24\par
-\par
+\b Refactoring 2
+\b0 :\
+After completing the above refactorings and making the code significantly more readable, the next bad smell that caught my eye was the "
+\i Method name that does not reveal its purpose
+\i0 ", in the getSomeInformationFromUser() method that I introduced above. I proceeded to rename the method to getUserAge(). I updated the references to this method both in Main and in TestMain. This refactoring made the code more readable and self-explanatory.\
+\
+I ran the updated JUnit test for getSomeInformationFromUser() and found that both methods passed the test as expected.\
+\
+The commit corresponding for this refactoring is: 
+\b 5fc27b2
+\b0 \
+\
 
-\pard\f2\fs20 Please enter your age.\par
-\f3\lang4105 >\f2\lang9 18\par
-Welcome to Bartendtron 2000, please select an option. Use "list" to display options.\par
-\f3\lang4105 >\f2\lang9 learn\par
-Invalid command, type "list" to see valid commands\par
-\f3\lang4105 >\f2\lang9 teach Milk false\par
-Milk learned!\par
-\f3\lang4105 >\f2\lang9 order Milk\par
+\b Refactoring 3
+\b0 :\
+After performing the above refactorings, I felt better about the state of the program. However, upon looking at the new methods and noticing that they were all refered to by an overarching "Bartender", the bad code smell of "
+\i Large Class
+\i0 " came back again, seeing as the entire program in written in one main class. The entire program did not need to be written in one Main class, as that completely forsakes good object oriented programming practice. The major refactoring I chose to apply to remedy this bad smell is "
+\i Extract Class
+\i0 ". I started by taking a look at the code within Run() and noticed that the entirety of the code deals with the bartender and his actions. In a good OOP program, the bartender would be a self-contained class, and that is how I made it. \
+\
+Due to the difficulty of console input/output testing, I tested that this refactoring did not break any functionality or cause any unexpected changes by running the same script as in 
+\b Refactoring 1
+\b0 . \
+\
+\pard\pardeftab720\partightenfactor0
 
-\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803 The bartender gives you a Milk\f0\fs24\par
-\par
-This refactoring served to reduce the size of the Main class by 2/3 and began to make the program conform to OOP practices.\par
-\par
-The commit corresponding for this refactoring is <\b TODO\b0 >\par
-\par
-\par
+\f2\fs20 \cf0 Please enter your age.\
+>sdfsdf\
+That's not a valid age, try again.\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\partightenfactor0
+\cf0 Please enter your age.
+\f0\fs24 \
+\
+\pard\pardeftab720\partightenfactor0
 
-\pard\tx720\b What needed to be improved? That is, what \ldblquote bad code smell\rdblquote  was detected? Use the terminology found in Chapter 3 of the Fowler text.\par
-\b0\par
-\par
-\b What refactoring was applied? What steps did you follow? Use the terminology and mechanics outlined in the Fowler text, and illustrate the process with well-chosen code fragments taken from particular versions of your system.\par
-\par
-\par
-How was the code tested?\par
-\par
-\par
+\f2\fs20 \cf0 Please enter your age.\
+>12\
+Welcome to Bartendtron 2000, please select an option. Use "list" to display options.\
+>order Whiskey\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\partightenfactor0
+\cf0 You're not old enough to drink Whiskey
+\f0\fs24 \
+\
+\pard\pardeftab720\partightenfactor0
 
-\pard\sa200\sl276\slmult1 Why is the code better structured after the refactoring? Does the result of the refactoring suggest or enable further refactorings?\b0\par
-\par
-Refactorings = extract class, rename method, extract variable, move method, \b\par
+\f2\fs20 \cf0 Please enter your age.\
+>18\
+Welcome to Bartendtron 2000, please select an option. Use "list" to display options.\
+>learn\
+Invalid command, type "list" to see valid commands\
+>teach Milk false\
+Milk learned!\
+>order Milk\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\partightenfactor0
+\cf0 The bartender gives you a Milk
+\f0\fs24 \
+\
+This refactoring served to reduce the size of the Main class by 2/3 and began to make the program conform to OOP practices.\
+\
+The commit corresponding for this refactoring \cf5 \cb6 is 
+\b \CocoaLigature0 6bc83c83
+\b0 \cf0 \cb1 \CocoaLigature1 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\partightenfactor0
+
+\b \cf0 Refactoring 4
+\b0 :\
+\
+Now that all code specific to the Bartender object has been moved into the Bartender class and I\'92ve tested that the change have not introduced any new bugs or unintended side effects, I can scan the Bartender class to find my next refactoring. One of the first bad smells that one notices when reading the code in the while loop is the \'93
+\i Large Method
+\i0 \'94 smell, caused by the fact that the entirety of the code for each of the commands available to the user is within one function. I chose to use \'93
+\i Extract Method
+\i0 \'94 on each command. The functions I extracted out are:\
+\
+teach():\
+\
+order():\
+\
+menu():\
+\
+Each of the above functions was tested with the junit tests TestTeach(), TestOrder(), TestMenu() respectively.\
+\
+The extraction of these methods made the source code more readable and self-documenting, allowing for easier future maintenance of the code.\
+\
+
+\b Refactoring 6
+\b0 : \
+\
+After the Bartender class was extracted from Main and the program tested to ensure results \
+\
+\
+\
+\
+\pard\tx720\pardeftab720\partightenfactor0
+
+\b \cf0 What needed to be improved? That is, what \'93bad code smell\'94 was detected? Use the terminology found in Chapter 3 of the Fowler text.\
+
+\b0 \
+\
+
+\b What refactoring was applied? What steps did you follow? Use the terminology and mechanics outlined in the Fowler text, and illustrate the process with well-chosen code fragments taken from particular versions of your system.\
+\
+\
+How was the code tested?\
+\
+\
+\pard\pardeftab720\sl276\slmult1\sa200\partightenfactor0
+\cf0 Why is the code better structured after the refactoring? Does the result of the refactoring suggest or enable further refactorings?
+\b0 \
+\
+
+\b \cb3 Git Logs
+\b0 \cb1 : <TODO>\
+\
+\
+Refactorings = extract class, rename method, extract variable, move method, 
+\b \
 }
- 
