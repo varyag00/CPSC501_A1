@@ -194,13 +194,15 @@ Now that all code specific to the Bartender object has been moved into the Barte
 \i Extract Method
 \i0 \'94 on each command. The functions I extracted out are:\
 \
-teach():\
+teach(): 
+\f1 \cf2 \cb0 \CocoaLigature0 5dfdc47
+\f0 \cf0 \cb1 \CocoaLigature1 \
 \
-order():\
+order(): \
 \
 menu():\
 \
-Each of the above functions was tested with the junit tests TestTeach(), TestOrder(), TestMenu() respectively.\
+Each of the above functions was tested with the JUnit tests TestTeach(), TestOrder(), TestMenu() respectively. The JUnit tests demonstrate that any bugs present in the original code (such as the incorrect error checking in \'93teach\'94 ) are still there after the structuring, because refactoring should maintain the functionality of the code.\
 \
 The extraction of these methods made the source code more readable and self-documenting, allowing for easier future maintenance of the code.\
 \

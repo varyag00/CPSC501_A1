@@ -27,6 +27,35 @@ public class Bartender {
 		}
 	}
 	
+	public String order(Scanner in){
+		//check if drink exists
+		String drink = in.next();
+		boolean drinkSeen = false;
+		
+		for (Map.Entry<String, Boolean> entry : drinks.entrySet()) 
+		{ 
+			//if the bartender knows he drink
+			if (drink.equals(entry.getKey())){
+				drinkSeen = true;
+				
+				//if the drink is alcoholic, check age
+				if (Boolean.parseBoolean(entry.getValue().toString()) == true){			    		
+					if (age >= 18){
+						return ("The bartender gives you a " + drink);
+					}
+					return ("You're not old enough to drink " + drink);
+			    }
+				else{
+					return ("The bartender gives you a " + drink);
+				}
+			} 
+//			if (drinkSeen)
+//				break;
+		}
+		
+		return ("The bartender doesn't know how to make " + drink);
+	}
+	
 	public void Run()
 	{				
 		String input;
@@ -46,33 +75,8 @@ public class Bartender {
 			
 			else if (input.contains("order")){
 				
-				//check if drink exists
-				String drink = in.next();
-				boolean drinkSeen = false;
-				
-				for (Map.Entry<String, Boolean> entry : drinks.entrySet()) 
-				{ 
-					//if the bartender knows he drink
-					if (drink.equals(entry.getKey())){
-						drinkSeen = true;
-						
-						//if the drink is alcoholic, check age
-						if (Boolean.parseBoolean(entry.getValue().toString()) == true){			    		
-							if (age >= 18){
-								System.out.println("The bartender gives you a " + drink);
-							}
-							System.out.println("You're not old enough to drink " + drink);
-					    }
-						else{
-							System.out.println("The bartender gives you a " + drink);
-						}
-					} 
-					if (drinkSeen)
-						break;
-				}
-				
-				if (!drinkSeen)
-					System.out.println("The bartender doesn't know how to make " + drink);
+				String output = order(in);
+				System.out.println(output);
 			}
 			
 			else if (input.contains("menu")){

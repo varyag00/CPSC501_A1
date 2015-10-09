@@ -47,15 +47,60 @@ public class TestBartender {
 		assertEquals("Milk learned!", bt.teach(scanner));
 		
 		//tests teaching alcoholic drink
-		data = "ChocoMilk true";
+		data = "RumAndCoke true";
 		System.setIn(new ByteArrayInputStream(data.getBytes()));
 		scanner = new Scanner(System.in);
 		
-		assertEquals("ChocoMilk learned!", bt.teach(scanner));
+		assertEquals("RumAndCoke learned!", bt.teach(scanner));
+		
+		//tests teaching gibberish/incorrect format (note that this demonstrates a bug present both in the refactored code and in the original code)
+		data = "chocolate milk";
+		System.setIn(new ByteArrayInputStream(data.getBytes()));
+		scanner = new Scanner(System.in);
+		
+		assertEquals("chocolate learned!", bt.teach(scanner));
 	}
 
 	public void TestOrder(){
 		
+		bt = new Bartender(scanner, 12, drinks);
+		
+		//tests a minor ordering a non-alcoholic drink
+		String data = "AppleJuice";
+		System.setIn(new ByteArrayInputStream(data.getBytes()));
+		scanner = new Scanner(System.in);
+		
+		assertEquals("The bartender gives you a AppleJuice", bt.order(scanner));
+		
+		//tests a minor ordering alcoholic drink
+		data = "Whiskey";
+		System.setIn(new ByteArrayInputStream(data.getBytes()));
+		scanner = new Scanner(System.in);
+		
+		assertEquals("You're not old enough to drink Whiskey", bt.order(scanner));
+		
+		bt = new Bartender(scanner, 23, drinks);
+		
+		//tests an adult ordering a non-alcoholic drink
+		 data = "AppleJuice";
+		System.setIn(new ByteArrayInputStream(data.getBytes()));
+		scanner = new Scanner(System.in);
+		
+		assertEquals("The bartender gives you a AppleJuice", bt.order(scanner));
+		
+		//tests an adult ordering alcoholic drink
+		data = "Whiskey";
+		System.setIn(new ByteArrayInputStream(data.getBytes()));
+		scanner = new Scanner(System.in);
+		
+		assertEquals("The bartender gives you a Whiskey", bt.order(scanner));
+		
+		//tests ordering an invalid drink
+		data = "ChocolateMilk";
+		System.setIn(new ByteArrayInputStream(data.getBytes()));
+		scanner = new Scanner(System.in);
+		
+		assertEquals("The bartender doesn't know how to make ChocolateMilk", bt.order(scanner));
 	}
 	
 	public void TestMenu(){
