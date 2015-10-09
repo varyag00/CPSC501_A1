@@ -18,19 +18,17 @@ public class TestBartender {
 	@Before
 	public void setUp() throws Exception {
 		
-		drinks = new HashMap<String, Boolean>();
-		
 		//initializing bartender's drinks
+		drinks = new HashMap<String, Boolean>();
 		drinks.put("AppleJuice",false);
 		drinks.put("Beer", true);
 		drinks.put("Whiskey", true);
-		
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		drinks.clear();
 		scanner = null;
-		drinks = null;
 		bt = null;
 	}
 	
@@ -61,6 +59,7 @@ public class TestBartender {
 		assertEquals("chocolate learned!", bt.teach(scanner));
 	}
 
+	@Test
 	public void TestOrder(){
 		
 		bt = new Bartender(scanner, 12, drinks);
@@ -103,7 +102,19 @@ public class TestBartender {
 		assertEquals("The bartender doesn't know how to make ChocolateMilk", bt.order(scanner));
 	}
 	
+	@Test
 	public void TestMenu(){
 		
+		bt = new Bartender(scanner, 12, drinks);
+		
+		assertEquals("Whiskey, Alcoholic\nAppleJuice\nBeer, Alcoholic\n", bt.menu());
+				
+		//tests adding a drink to the menu
+		String data = "ChocoMilk, false";
+		System.setIn(new ByteArrayInputStream(data.getBytes()));
+		scanner = new Scanner(System.in);
+		bt.teach(scanner);
+		
+		assertEquals("ChocoMilk,\nWhiskey, Alcoholic\nAppleJuice\nBeer, Alcoholic\n", bt.menu());
 	}
 }

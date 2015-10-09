@@ -14,6 +14,21 @@ public class Bartender {
 		this.drinks = drinks;
 	}
 	
+	public String menu(){
+		String returnString = "";
+		
+	    for (Map.Entry<String, Boolean> entry : drinks.entrySet()) 
+	    { 
+	    	returnString += entry.getKey();
+	    	
+	        if (Boolean.parseBoolean(entry.getValue().toString()) == true){
+		        returnString += ", Alcoholic";
+	        }
+	        returnString += "\n";
+	    }
+	    return returnString;
+	}
+	
 	public String teach(Scanner in){
 			//parsing string
 		String drinkName = in.next();
@@ -49,10 +64,7 @@ public class Bartender {
 					return ("The bartender gives you a " + drink);
 				}
 			} 
-//			if (drinkSeen)
-//				break;
 		}
-		
 		return ("The bartender doesn't know how to make " + drink);
 	}
 	
@@ -81,15 +93,8 @@ public class Bartender {
 			
 			else if (input.contains("menu")){
 			    
-			    for (Map.Entry<String, Boolean> entry : drinks.entrySet()) 
-			    { 
-			    	System.out.print(entry.getKey());
-			        if (Boolean.parseBoolean(entry.getValue().toString()) == true){
-				        System.out.print(", Alcoholic");
-			        }
-			        System.out.println("");
-			    }
-			    
+				String output = menu();
+				System.out.println(output); 
 			}
 			
 			else if (input.equals("quit")){

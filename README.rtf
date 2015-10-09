@@ -185,7 +185,7 @@ The commit corresponding for this refactoring \cf5 \cb6 is
 \
 \pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\partightenfactor0
 
-\b \cf0 Refactoring 4
+\b \cf0 Refactoring 3.5
 \b0 :\
 \
 Now that all code specific to the Bartender object has been moved into the Bartender class and I\'92ve tested that the change have not introduced any new bugs or unintended side effects, I can scan the Bartender class to find my next refactoring. One of the first bad smells that one notices when reading the code in the while loop is the \'93
@@ -207,11 +207,10 @@ Each of the above functions was tested with the JUnit tests TestTeach(), TestOrd
 The extraction of these methods made the source code more readable and self-documenting, allowing for easier future maintenance of the code.\
 \
 
-\b Refactoring 6
+\b Refactoring 4
 \b0 : \
 \
-After the Bartender class was extracted from Main and the program tested to ensure results \
-\
+Another bad smell visible when looking at the order() method was that now the \
 \
 \
 \
