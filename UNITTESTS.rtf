@@ -1,0 +1,187 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf110
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+\margl1440\margr1440\vieww12600\viewh14500\viewkind0
+\deftab720
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardeftab720\partightenfactor0
+
+\f0\fs24 \cf0 Name:	J. Daniel Gonzalez\
+UCID:	10058656\
+Class:	CPSC 501\
+Ass:		1\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs22 \cf2 \
+\
+import static org.junit.Assert.*;\
+\
+import java.io.ByteArrayInputStream;\
+import java.util.Scanner;\
+\
+import \ul org.junit.After\ulnone ;\
+import \ul org.junit.Before\ulnone ;\
+import org.junit.Test;\
+\
+public class MainTest \{\
+\
+	private Scanner scanner;	\
+\
+	@Test\
+	public void TestGetUserAge()\{\
+		String data = "12";\
+		System.setIn(new ByteArrayInputStream(data.getBytes()));\
+		scanner = new Scanner(System.in);\
+		assertEquals(12 , Main.getUserAge(scanner));\
+		\
+		data = "-1";\
+		System.setIn(new ByteArrayInputStream(data.getBytes()));\
+		scanner = new Scanner(System.in);\
+		assertEquals(-1, Main.getUserAge(scanner));\
+	\}\
+\
+	\
+//	@Test\
+//	public void TestBartenderRun()\{\
+//	\
+//		\ul int\ulnone  age = 12;\
+//		\
+//		String data = "order Whiskey";\
+//		System.setIn(new ByteArrayInputStream(data.getBytes()));\
+//		scanner = new Scanner(System.in);\
+//		\
+//		Map<String, Boolean> drinks = new HashMap<String, Boolean>();\
+//		drinks.put("AppleJuice",false);\
+//		drinks.put("Beer", true);\
+//		drinks.put("Whiskey", true);\
+//\
+//		Bartender \ul bt\ulnone  = new Bartender(scanner, age, drinks);\
+//		\
+//		bt.Run();\
+//	\}\
+\}\
+\
+\
+\pard\pardeftab720\partightenfactor0
+\cf2 import static org.junit.Assert.*;\
+\
+import java.io.ByteArrayInputStream;\
+import java.util.HashMap;\
+import java.util.Map;\
+import java.util.Scanner;\
+\
+import org.junit.After;\
+import org.junit.Before;\
+import org.junit.Test;\
+\
+public class \ul TestBartender\ulnone  \{\
+\
+	private Scanner scanner;	\
+	private Map<String, Boolean> drinks;\
+	private Bartender bt;\
+	\
+	@Before\
+	public void setUp() throws Exception \{\
+		\
+		//initializing bartender's drinks\
+		drinks = new HashMap<String, Boolean>();\
+		drinks.put("AppleJuice",false);\
+		drinks.put("Beer", true);\
+		drinks.put("Whiskey", true);\
+	\}\
+\
+	@After\
+	public void tearDown() throws Exception \{\
+		drinks.clear();\
+		scanner = null;\
+		bt = null;\
+	\}\
+	\
+	@Test\
+	public void TestTeach() \{\
+		\
+		bt = new Bartender(scanner, 12, drinks);\
+	\
+		//tests teaching non-alcoholic drink\
+		String data = "Milk false";\
+		System.setIn(new ByteArrayInputStream(data.getBytes()));\
+		scanner = new Scanner(System.in);\
+		\
+		assertEquals("Milk learned!", bt.teach(scanner));\
+		\
+		//tests teaching alcoholic drink\
+		data = "RumAndCoke true";\
+		System.setIn(new ByteArrayInputStream(data.getBytes()));\
+		scanner = new Scanner(System.in);\
+		\
+		assertEquals("RumAndCoke learned!", bt.teach(scanner));\
+		\
+		//tests teaching gibberish/incorrect format (note that this demonstrates a bug present both in the \ul refactored\ulnone  code and in the original code)\
+		data = "chocolate milk";\
+		System.setIn(new ByteArrayInputStream(data.getBytes()));\
+		scanner = new Scanner(System.in);\
+		\
+		assertEquals("chocolate learned!", bt.teach(scanner));\
+	\}\
+\
+	@Test\
+	public void TestOrder()\{\
+		\
+		bt = new Bartender(scanner, 12, drinks);\
+		\
+		//tests a minor ordering a non-alcoholic drink\
+		String data = "AppleJuice";\
+		System.setIn(new ByteArrayInputStream(data.getBytes()));\
+		scanner = new Scanner(System.in);\
+		\
+		assertEquals("The bartender gives you a AppleJuice", bt.order(scanner));\
+		\
+		//tests a minor ordering alcoholic drink\
+		data = "Whiskey";\
+		System.setIn(new ByteArrayInputStream(data.getBytes()));\
+		scanner = new Scanner(System.in);\
+		\
+		assertEquals("You're not old enough to drink Whiskey", bt.order(scanner));\
+		\
+		bt = new Bartender(scanner, 23, drinks);\
+		\
+		//tests an adult ordering a non-alcoholic drink\
+		 data = "AppleJuice";\
+		System.setIn(new ByteArrayInputStream(data.getBytes()));\
+		scanner = new Scanner(System.in);\
+		\
+		assertEquals("The bartender gives you a AppleJuice", bt.order(scanner));\
+		\
+		//tests an adult ordering alcoholic drink\
+		data = "Whiskey";\
+		System.setIn(new ByteArrayInputStream(data.getBytes()));\
+		scanner = new Scanner(System.in);\
+		\
+		assertEquals("The bartender gives you a Whiskey", bt.order(scanner));\
+		\
+		//tests ordering an invalid drink\
+		data = "ChocolateMilk";\
+		System.setIn(new ByteArrayInputStream(data.getBytes()));\
+		scanner = new Scanner(System.in);\
+		\
+		assertEquals("The bartender doesn't know how to make ChocolateMilk", bt.order(scanner));\
+	\}\
+	\
+	@Test\
+	public void TestMenu()\{\
+		\
+		bt = new Bartender(scanner, 12, drinks);\
+		\
+		assertEquals("Whiskey, Alcoholic\\nAppleJuice\\nBeer, Alcoholic\\n", bt.menu());\
+				\
+		//tests adding a drink to the menu\
+		String data = "ChocoMilk, false";\
+		System.setIn(new ByteArrayInputStream(data.getBytes()));\
+		scanner = new Scanner(System.in);\
+		bt.teach(scanner);\
+		\
+		assertEquals("ChocoMilk,\\nWhiskey, Alcoholic\\nAppleJuice\\nBeer, Alcoholic\\n", bt.menu());\
+	\}\
+\}\
+\pard\pardeftab720\partightenfactor0
+\cf2 \
+}

@@ -1,0 +1,305 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf110
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+\margl1440\margr1440\vieww12600\viewh14500\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\b\fs24 \cf2 Before Refactoring
+\b0 :\
+\
+import java.util.HashMap;\
+import java.util.Map;\
+import java.util.Scanner;\
+\
+/* Name: 	Dan Gonzalez\
+ * UCID: 	10058656\
+ * \
+ * Program is a bartender program that can serve the user drinks\
+ * Bartender starts off knowing how to make some drinks, but can learn to make new drinks. Checks for ID on alcoholic drinks\
+ * \
+ */\
+\
+public class Main \
+\{\
+\
+	public static Map<String, Boolean> drinks = new HashMap<String, Boolean>();\
+	\
+	//trying my best to put the whole program into one main method\
+	public static void main(String[] args) \
+	\{\
+			//initializing bartender's drinks\
+		drinks.put("AppleJuice",false);\
+		drinks.put("Beer", true);\
+		drinks.put("Whiskey", true);\
+		\
+		int age;\
+		\
+		Scanner in = new Scanner(System.in);\
+		String input;\
+		\
+		//get user's age\
+		while (true) \{\
+			System.out.println("Please enter your age."); 	            \
+			input = in.next();\
+	        try \{\
+	        	age = Integer.parseInt(input);\
+	                break;\
+	        \} \
+	        catch (Exception e) \{\
+	        	System.out.println("That's not a valid age, try again.");\
+	        \}\
+		\}\
+\
+		System.out.println("Welcome to Bartendtron 2000, please select an option. Use \\"list\\" to display options.");\
+\
+		while (true) \{\
+			input = in.next();\
+	        \
+			if (input.contains("list"))\{\
+				System.out.println("Commands: \\n\\n order <String drink> \\n\\n teach <String drink> <bool isAlcoholic> \\n\\n menu");\
+			\}\
+			\
+			else if (input.contains("teach"))\{\
+				\
+					//parsing string\
+				String drinkName = in.next();\
+				try \{\
+					drinks.put(drinkName,Boolean.parseBoolean(in.next()));  \
+						\
+					System.out.println(drinkName + " learned!");\
+				\}\
+				catch (Exception e)\{\
+					System.out.println("Invalid teaching format.");\
+				\}\
+			\}\
+			\
+			else if (input.contains("order"))\{\
+				\
+				//check if drink exists\
+				String drink = in.next();\
+				boolean drinkSeen = false;\
+				\
+				for (Map.Entry<String, Boolean> entry : drinks.entrySet()) \
+				\{ \
+					//if the bartender knows he drink\
+					if (drink.equals(entry.getKey()))\{\
+						drinkSeen = true;\
+						\
+						//if the drink is alcoholic, check age\
+						if (Boolean.parseBoolean(entry.getValue().toString()) == true)\{			    		\
+							if (age >= 18)\{\
+								System.out.println("The bartender gives you a " + drink);\
+							\}\
+							System.out.println("You're not old enough to drink " + drink);\
+					    \}\
+						else\{\
+							System.out.println("The bartender gives you a " + drink);\
+						\}\
+					\} \
+					if (drinkSeen)\
+						break;\
+				\}\
+				\
+				if (!drinkSeen)\
+					System.out.println("The bartender doesn't know how to make " + drink);\
+			\}\
+			\
+			else if (input.contains("menu"))\{\
+			    \
+			    for (Map.Entry<String, Boolean> entry : drinks.entrySet()) \
+			    \{ \
+			    	System.out.print(entry.getKey());\
+			        if (Boolean.parseBoolean(entry.getValue().toString()) == true)\{\
+				        System.out.print(", Alcoholic");\
+			        \}\
+			        System.out.println("");\
+			    \}\
+			    \
+			\}\
+			\
+			else if (input.equals("quit"))\{\
+				System.out.println("Bye");\
+				break;\
+			\}\
+			\
+			else\{\
+				System.out.println("Invalid command, type \\"list\\" to see valid commands");\
+				input = in.nextLine();\
+\
+			\}\
+		\}\
+	\}\
+\}\
+\
+\
+\
+
+\b After Refactoring
+\b0 :\
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\fs22 \cf2 import java.util.HashMap;\
+import java.util.Map;\
+import java.util.Scanner;\
+\
+/* Name: 	Dan \ul Gonzalez\ulnone \
+ * UCID: 	10058656\
+ * \
+ * Program is a bartender program that can serve the user drinks\
+ * Bartender starts off knowing how to make some drinks, but can learn to make new drinks. \
+ * Checks for user's age when attempting to order alcoholic drinks\
+ * \
+ */\
+\
+public class Main \
+\{\
+	private static Map<String, Boolean> drinks = new HashMap<String, Boolean>();\
+	\
+	public static void main(String[] args) \
+	\{	\
+		//initializing bartender's drinks\
+		drinks.put("AppleJuice",false);\
+		drinks.put("Beer", true);\
+		drinks.put("Whiskey", true);\
+		\
+		Scanner in = new Scanner(System.in);\
+		\
+		int age = getUserAge(in);\
+\
+		System.out.println("Welcome to Bartendtron 2000, please select an option. Use \\"list\\" to display options.");\
+		\
+		//declaring and instantiating our bartender object\
+		Bartender bt = new Bartender(in, age, drinks);\
+		bt.Run();\
+	\}\
+	\
+	public static int getUserAge(Scanner in)\{\
+		\
+		//get user's age\
+		int age;\
+		while (true) \{\
+			System.out.println("Please enter your age."); 	            \
+			String input = in.next();\
+	        try \{\
+	        	age = Integer.parseInt(input);\
+	            break;\
+	        \} \
+	        catch (Exception e) \{\
+	        	System.out.println("That's not a valid age, try again.");\
+	        \}\
+		\}\
+		return age;\
+	\}\
+\
+\}\
+import java.util.Map;\
+import java.util.Scanner;\
+\
+public class Bartender \{\
+	\
+	private Scanner in;\
+	private int age;\
+	private Map<String, Boolean> drinks;\
+	\
+	public Bartender(Scanner in, int age, Map<String, Boolean> drinks)\{\
+		\
+		this.in = in;\
+		this.age = age;\
+		this.drinks = drinks;\
+	\}\
+	\
+	public String menu()\{\
+		String returnString = "";\
+		\
+	    for (Map.Entry<String, Boolean> entry : drinks.entrySet()) \
+	    \{ \
+	    	returnString += entry.getKey();\
+	    	\
+	        if (Boolean.parseBoolean(entry.getValue().toString()) == true)\{\
+		        returnString += ", Alcoholic";\
+	        \}\
+	        returnString += "\\n";\
+	    \}\
+	    return returnString;\
+	\}\
+	\
+	public String teach(Scanner in)\{\
+			//parsing string\
+		String drinkName = in.next();\
+		try \{\
+			drinks.put(drinkName,Boolean.parseBoolean(in.next()));  \
+										\
+			return (drinkName + " learned!");\
+		\}\
+		catch (Exception e)\{\
+			return "Invalid teaching format.";\
+		\}\
+	\}\
+	\
+	public String order(Scanner in)\{\
+		//check if drink exists\
+		String drink = in.next();\
+		\
+		for (Map.Entry<String, Boolean> entry : drinks.entrySet()) \
+		\{ \
+			//if the bartender knows he drink\
+			if (drink.equals(entry.getKey()))\{\
+				\
+				//if the drink is alcoholic, check age\
+				if (Boolean.parseBoolean(entry.getValue().toString()) == true)\{			    		\
+					if (age >= 18)\{\
+						return ("The bartender gives you a " + drink);\
+					\}\
+					return ("You're not old enough to drink " + drink);\
+			    \}\
+				else\{\
+					return ("The bartender gives you a " + drink);\
+				\}\
+			\} \
+		\}\
+		return ("The bartender doesn't know how to make " + drink);\
+	\}\
+	\
+	public void Run()\
+	\{				\
+		String input;\
+		\
+		while (true) \{\
+			input = in.next();\
+	        \
+			if (input.contains("list"))\{\
+				System.out.println("Commands: \\n\\n order <String drink> \\n\\n teach <String drink> <bool isAlcoholic> \\n\\n menu");\
+			\}\
+			\
+			else if (input.contains("teach"))\{\
+					\
+				String output = teach(in);\
+				System.out.println(output);\
+			\}\
+			\
+			else if (input.contains("order"))\{\
+				\
+				String output = order(in);\
+				System.out.println(output);\
+			\}\
+			\
+			else if (input.contains("menu"))\{\
+			    \
+				String output = menu();\
+				System.out.println(output); \
+			\}\
+			\
+			else if (input.equals("quit"))\{\
+				System.out.println("Bye");\
+				break;\
+			\}\
+			\
+			else\{\
+				System.out.println("Invalid command, type \\"list\\" to see valid commands");\
+				input = in.nextLine();\
+			\}\
+		\}	\
+	\}\
+\}\
+}
