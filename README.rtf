@@ -13,9 +13,13 @@ Class:	CPSC 501\
 Ass:		1\
 \
 \
-Code base: The code base I chose to use for this assignment is the java project \'93Bartender\'94, a (terrible) program that I wrote specifically for this assignment. The program runs a \'93bartender\'94 that serves the user drinks and may learn to make new drinks. It also does not serve alcoholic drinks to underage users. \
+
+\b Code base
+\b0 : The code base I chose to use for this assignment is the java project \'93Bartender\'94, a (terrible) program that I wrote specifically for this assignment. The program runs a \'93bartender\'94 that serves the user drinks and may learn to make new drinks. It also does not serve alcoholic drinks to underage users. \
 \
-Version control: The version control system I chose to use for this assignment is git.\
+
+\b Version control
+\b0 : The version control system I chose to use for this assignment is git.\
 Initial commits:\
 	First commit in the repository: 
 \f1 \cf2 4cd43cc361d43339e069800ef918a2df71fe738c
@@ -29,7 +33,9 @@ Initial commits:\
 \b \cb3 TODO
 \b0 \cb1 >: change original Bartender project to the slightly modified project with a run method, also change first commit in repository to its hash\
 \
-Final commit:  
+
+\b Final commit
+\b0 :  
 \b TODO
 \b0 \
 	\
@@ -123,7 +129,9 @@ The commit corresponding to this refactoring is:
 \b0 :\
 After completing the above refactorings and making the code significantly more readable, the next bad smell that caught my eye was the "
 \i Method name that does not reveal its purpose
-\i0 ", in the getSomeInformationFromUser() method that I introduced above. I proceeded to rename the method to getUserAge(). I updated the references to this method both in Main and in TestMain. This refactoring made the code more readable and self-explanatory.\
+\i0 ", in the getSomeInformationFromUser() method that I introduced above. I proceeded to \'93
+\i Rename Method
+\i0 \'94 to getUserAge(). I updated the references to this method both in Main and in TestMain. This refactoring made the code more readable and self-explanatory.\
 \
 I ran the updated JUnit test for getSomeInformationFromUser() and found that both methods passed the test as expected.\
 \
@@ -206,6 +214,10 @@ menu():
 \f1 \cf7 \cb0 \CocoaLigature0 c036262
 \f0 \cf0 \cb1 \CocoaLigature1 \
 \
+Each of the above implicitly used the \'93
+\i Add Parameter
+\i0 \'94 refactoring due to requiring the input scanner for their new methods. However this was more for simplifying testing purposes rather than truly improving code structure or readability, and thus I did not include it as one of my main refactorings\
+\
 Each of the above functions was tested with the JUnit tests TestTeach(), TestOrder(), TestMenu() respectively. The JUnit tests demonstrate that any bugs present in the original code (such as the incorrect error checking in \'93teach\'94 ) are still there after the structuring, because refactoring should maintain the functionality of the code.\
 \
 The extraction of these methods made the source code more readable and self-documenting, allowing for easier future maintenance of the code.\
@@ -216,13 +228,25 @@ The extraction of these methods made the source code more readable and self-docu
 \
 Another bad smell visible when looking at the order() method was that now the code is self-contained within a method, the variable drinkSeen is not entirely unused after declaration. I removed all usage of this variable with \'93
 \i Remove Redundant Variable
-\i0 \'94 within the method entirely to improve code readability and reduce length. The unit tests for order() still passed, and thus this refactoring has changed neither the functionality of the code nor introduced unforeseen consequences. \
+\i0 \'94, or \'93
+\i Remove Control Flag
+\i0 \'94 (as this was the original purpose) within the method entirely to improve code readability and reduce length. The code was tested by running the unit tests previously written for order(), and as these tests still passed, I\'92ve concluded that this refactoring has changed neither the functionality of the code nor introduced unforeseen consequences. \
 \
-The commit corresponding to this refactoring is: \
+The commit corresponding to this refactoring is: 
+\f1 \cf7 \cb0 \CocoaLigature0 925eed4
+\f0 \cf0 \cb1 \CocoaLigature1 \
 \
 
 \b Refactoring 5
 \b0 :\
+\
+Within the Main class, drinks is a public field that should be private, and as such the \'93
+\i Encapsulate Field
+\i0 \'94 refactoring should be used. As no accessors or mutators are required for this field (because after its initial set up within main() it is never accessed again other than through the build in map methods), none were added and the field was simply changed to private.\
+\
+No tests were required for this change as it does not affect any other parts of the code, and the fact that the program compiles and runs while passing all of the previous unit test after this change is indicator to this fact. \
+\
+The commit corresponding to this refactoring is: \
 \
 \pard\tx720\pardeftab720\partightenfactor0
 
@@ -246,6 +270,6 @@ How was the code tested?\
 \b0 \cb1 : <TODO>\
 \
 \
-Refactorings = extract class, rename method, extract variable, move method, 
+Refactorings = extract class, rename method, extract variable 
 \b \
 }

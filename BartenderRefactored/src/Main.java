@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class Main 
 {
-	public static Map<String, Boolean> drinks = new HashMap<String, Boolean>();
+	private static Map<String, Boolean> drinks = new HashMap<String, Boolean>();
 	
 	public static void main(String[] args) 
 	{	
