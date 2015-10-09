@@ -45,13 +45,11 @@ public class Bartender {
 	public String order(Scanner in){
 		//check if drink exists
 		String drink = in.next();
-		boolean drinkSeen = false;
 		
 		for (Map.Entry<String, Boolean> entry : drinks.entrySet()) 
 		{ 
 			//if the bartender knows he drink
 			if (drink.equals(entry.getKey())){
-				drinkSeen = true;
 				
 				//if the drink is alcoholic, check age
 				if (Boolean.parseBoolean(entry.getValue().toString()) == true){			    		
